@@ -19,6 +19,7 @@
         <div class="section">
             <h2>Cadastrar Novo Aluno</h2>
             <form id="form-aluno">
+                    <input type="hidden" id="aluno-id">
                 <div class="form-group">
                     <label for="aluno-nome">Nome Completo:</label>
                     <input type="text" id="aluno-nome" placeholder="Ex: Carlos Gabryel" required>
@@ -41,11 +42,12 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Turma</th>
+                        <th>Ações</th> 
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="3" style="text-align:center;">Carregando alunos...</td>
+                        <td colspan="4" style="text-align:center;">Carregando alunos...</td>
                     </tr>
                 </tbody>
             </table>

@@ -25,8 +25,25 @@ async function carregarListaAlunos() {
                 <td>${aluno.id}</td>
                 <td>${aluno.nome}</td>
                 <td>${aluno.turma || 'N/A'}</td>
+                <td><button onclick="prepararEdicao('${aluno.id}', '${aluno.nome}', '${aluno.turma}')">Editar</button></td>
+
             </tr>
         `).join('');
+
+        window.prepararEdicao = (id, nome, turma) => {
+            document.getElementById('aluno-id').value = id;
+            document.getElementById('aluno-nome').value = nome;
+            document.getElementById('aluno-turma').value = turma;
+
+            // Muda o comportamento do botão para "Salvar Alterações"
+            const btn = document.querySelector('#form-aluno button');
+            btn.innerText = "Salvar Alterações";
+            formAluno.dataset.mode = 'edit';
+
+            // Para rolar a tela automaticamente para o formulário de edição
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
     } catch (err) {
         console.error("Erro ao carregar lista de alunos:", err);
     }
@@ -37,30 +54,40 @@ if (formAluno) {
     formAluno.onsubmit = async (e) => {
         e.preventDefault();
 
+        const mode = formAluno.dataset.mode;
+        const id = document.getElementById('aluno-id').value; // Pega do campo hidden
+
         const dados = {
             nome: document.getElementById('aluno-nome').value,
             turma: document.getElementById('aluno-turma').value
         };
 
+        const url = mode === 'edit' ? `/api/alunos/${id}` : '/api/alunos';
+        const method = mode === 'edit' ? 'PUT' : 'POST';
+
         try {
-            const res = await fetch('/api/alunos', {
-                method: 'POST',
+            const res = await fetch(url, {
+                method: method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dados)
             });
 
-            const result = await res.json();
-
             if (res.ok) {
-                alert(`Aluno cadastrado com sucesso! ID: ${result.id}`);
+                alert(mode === 'edit' ? "Aluno atualizado!" : "Aluno cadastrado!");
+
+                // Limpeza total após sucesso
                 formAluno.reset();
-                carregarListaAlunos(); // Atualiza a tabela imediatamente
+                document.getElementById('aluno-id').value = ''; // Limpa o ID hidden
+                document.querySelector('#form-aluno button').innerText = "Finalizar Cadastro";
+                formAluno.dataset.mode = 'create';
+
+                carregarListaAlunos();
             } else {
-                alert('Erro ao cadastrar: ' + result.error);
+                const errorData = await res.json();
+                alert('Erro: ' + errorData.error);
             }
         } catch (err) {
             console.error("Erro na requisição:", err);
-            alert("Erro ao conectar com o servidor.");
         }
     };
 }

@@ -116,7 +116,7 @@ router.put('/emprestimos/:id/devolucao', async (req, res) => {
 // Rota: Listar todos os alunos (para o select)
 router.get('/alunos', async (req, res) => {
     try {
-        const result = await pool.query('SELECT id, nome FROM Aluno ORDER BY nome ASC');
+        const result = await pool.query('SELECT id, nome, turma FROM Aluno ORDER BY nome ASC');
         res.json(result.rows); // Isso deve retornar um array de objetos
     } catch (err) {
         console.error("Erro na rota GET /alunos:", err);
@@ -139,6 +139,26 @@ router.put('/livros/:isbn', async (req, res) => {
         }
         
         res.json({ message: 'Livro atualizado com sucesso!' });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
+
+// Rota: Editar Aluno (Atualizar dados)
+router.put('/alunos/:id', async (req, res) => {
+    const { id } = req.params;
+    const { nome, turma } = req.body;
+    try {
+        const result = await pool.query(
+            'UPDATE Aluno SET nome = $1, turma = $2 WHERE id = $3 RETURNING *',
+            [nome, turma, id]
+        );
+        
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: "Aluno não encontrado." });
+        }
+        
+        res.json({ message: 'Aluno atualizado com sucesso!' });
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
