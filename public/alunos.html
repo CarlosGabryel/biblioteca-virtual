@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Gerenciar Alunos - Biblioteca Virtual</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html">Empréstimos</a>
+            <a href="alunos.html" class="active">Alunos</a>
+            <a href="livros.html">Livros</a>
+        </nav>
+
+        <h1>Gerenciamento de Alunos</h1>
+
+        <div class="section">
+            <h2>Cadastrar Novo Aluno</h2>
+            <form id="form-aluno">
+                <div class="form-group">
+                    <label for="aluno-nome">Nome Completo:</label>
+                    <input type="text" id="aluno-nome" placeholder="Ex: Carlos Gabryel" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="aluno-turma">Turma:</label>
+                    <input type="text" id="aluno-turma" placeholder="Ex: 6ADS" required>
+                </div>
+                
+                <button type="submit">Finalizar Cadastro</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Alunos Cadastrados</h2>
+            <table id="tabela-alunos" class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Turma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" style="text-align:center;">Carregando alunos...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/alunos.js"></script>
+</body>
+</html>

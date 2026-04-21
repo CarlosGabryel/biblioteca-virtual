@@ -1,0 +1,218 @@
+/* Variáveis de Cores e Estilo Sênior */
+:root {
+    --primary-color: #2c3e50;    /* Azul Escuro Corporativo */
+    --secondary-color: #27ae60;  /* Verde Sucesso */
+    --accent-color: #3498db;     /* Azul Destaque */
+    --danger-color: #e74c3c;     /* Vermelho Erro */
+    --bg-color: #f8f9fa;         /* Cinza muito claro */
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --border-color: #dee2e6;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset e Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+h2::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 25px;
+    background: var(--secondary-color);
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+/* Navegação */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    background: var(--primary-color);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--secondary-color);
+}
+
+.nav a.active {
+    color: var(--secondary-color);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Seções e Formulários */
+.section {
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.3s;
+}
+
+button:hover {
+    background-color: #219150;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Tabelas de Dados */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.data-table th {
+    background-color: #f1f3f5;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 15px;
+    border-bottom: 2px solid var(--border-color);
+    text-align: left;
+}
+
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Status e Botões de Tabela */
+.status-ok {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.btn-devolver {
+    background-color: var(--accent-color);
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    width: auto;
+}
+
+.btn-devolver:hover {
+    background-color: #2980b9;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .data-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

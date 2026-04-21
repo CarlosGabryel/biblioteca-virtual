@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Empréstimos - Biblioteca Virtual</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html" class="active">Empréstimos</a>
+            <a href="alunos.html">Alunos</a>
+            <a href="livros.html">Livros</a>
+        </nav>
+
+        <h1>Gestão de Empréstimos</h1>
+
+        <div class="section">
+            <h2>Registrar Novo Empréstimo</h2>
+            <form id="form-emprestimo">
+                <div class="form-group">
+                    <label for="select-livro">Livro Disponível:</label>
+                    <select id="select-livro" required>
+                        <option value="">Carregando livros...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="select-aluno">Aluno:</label>
+                    <select id="select-aluno" required>
+                        <option value="">Carregando alunos...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bibliotecario">Bibliotecário Responsável:</label>
+                    <input type="text" id="bibliotecario" placeholder="Seu nome" required>
+                </div>
+                
+                <button type="submit" style="background-color: var(--primary);">Confirmar Empréstimo</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Histórico e Devoluções</h2>
+            <table id="tabela-emprestimos" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Livro</th>
+                        <th>Aluno</th>
+                        <th>Data Empréstimo</th>
+                        <th>Data Devolução</th>
+                        <th>Status / Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" style="text-align:center;">Carregando histórico...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/emprestimos.js"></script>
+</body>
+</html>
